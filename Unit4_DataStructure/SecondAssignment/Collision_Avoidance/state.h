@@ -21,6 +21,4 @@ void US_distance_Set(int distance);
 void DC_Motor_SetSpeed(int speed);
 
 
-
-
 #endif /* STATE_H_ */
