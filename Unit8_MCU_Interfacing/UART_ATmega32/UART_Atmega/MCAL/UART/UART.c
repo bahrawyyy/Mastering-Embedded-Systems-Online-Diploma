@@ -11,8 +11,10 @@
 
 #define NULL ((void *)0)
 
+static u8 *TX_Str;
+static u8 flag_send = 1;
 
-#define MAX_STRING_LENGTH 100
+
 
 void UART_Init(void)
 {
@@ -45,8 +47,11 @@ void UART_Send_Char(u8 data)
 	while(!GET_BIT(UCSRA,UDRE));
 	UDR = data;
 }
+
+
 u8 UART_Receive_Char(void)
 {
+	// The CPU is stucking here
 	while(!GET_BIT(UCSRA,RXC));
 	return UDR;
 }
@@ -59,28 +64,101 @@ void UART_Send_String(char* string)
 		UART_Send_Char(string[i]);
 		i++;
 	}
+	// Send (Enter) as a terminating char
+	UART_Send_Char(DefaultStop);
 }
 
 
-char* UART_Receive_String(void)
+void UART_Receive_String(char *Buffer)
 {
-    static char string[MAX_STRING_LENGTH];
     int i = 0;
-    char received_char;
 
-    while ((received_char = UART_Receive_Char()) != '#') {
-        string[i] = received_char;
+    Buffer[i] = UART_Receive_Char();
+    while (Buffer[i] != DefaultStop) {
         i++;
+        Buffer[i] = UART_Receive_Char();
 
-        // Add a check for string length to prevent buffer overflow
-        if (i >= MAX_STRING_LENGTH - 1) {
-            break; // Exit loop to prevent exceeding the buffer size (leave space for null-termination)
-        }
     }
 
-    string[i] = '\0'; // Null-terminate the string
+    Buffer[i] = '\0'; // Null-terminate the string
+}
 
-    return string;
+// Some characters may not be read, if you entered them fast
+u8 UART_Receive_PeriodicCheck(u8* pdata)
+{
+	if(GET_BIT(UCSRA,RXC))
+	{
+		*pdata = UDR;
+		return 1;
+	}
+	return 0;
+}
+
+
+void UART_SendNoBlock(u8 data)
+{
+	UDR = data;
+}
+
+u8 UART_ReceiveNoBlock(void)
+{
+	return UDR;
+}
+
+// Receive complete
+void UART_RX_InterruptEnable(void)
+{
+	SET_BIT(UCSRB,RXCIE);
+}
+
+// Transmission complete
+void UART_TX_InterruptEnable(void)
+{
+	SET_BIT(UCSRB,TXCIE);
+}
+
+
+// Receive complete
+void UART_RX_InterruptDisable(void)
+{
+	CLR_BIT(UCSRB,RXCIE);
+}
+
+// Transmission complete
+void UART_TX_InterruptDisable(void)
+{
+	CLR_BIT(UCSRB,TXCIE);
+}
+
+
+
+// Function Asynchronous to send string
+void UART_SendString_ASYNCH(u8* str)
+{
+	// To prevent data over run
+	// When I'm sending this string, I'll continue till I finish it
+	if(flag_send == 1){
+		UART_TX_InterruptEnable();
+		UART_SendNoBlock(str[0]);
+		TX_Str = str;   // To know where I'm stopping out of this function
+		flag_send = 0;
+	}
+}
+
+
+
+
+ISR(USART_TXC_vect)
+{
+	static u8 i = 1;
+	if(TX_Str[i]!= 0)
+	{
+		UART_SendNoBlock(TX_Str[i]);
+		i++;
+	}else{
+		i=1;
+		flag_send=1;
+	}
 }
 
 
