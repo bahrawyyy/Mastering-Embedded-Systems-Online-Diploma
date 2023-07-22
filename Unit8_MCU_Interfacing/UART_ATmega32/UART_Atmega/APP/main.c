@@ -13,8 +13,7 @@
 #include "../MCAL/UART/UART.h"
 #include "string.h"
 
-char received_string[100];
-u8 y,x;
+
 
 
 int main()
@@ -23,6 +22,9 @@ int main()
 	Lcd_ES_tInit();
 	UART_Init();
 	sei();
+
+	u8 received_string[100]={0};
+
 
 
 	Lcd_ES_tsendString("UART");
@@ -34,38 +36,17 @@ int main()
 
 
 	UART_SendString_ASYNCH("Abdalla");
-	_delay_ms(10);
-	UART_SendString_ASYNCH("Bahrawy");
+
+
+	UART_ReceiveString_ASYNCH(received_string);
+
 
 
 	while (1)
 	{
 
-
-
-
-
-//		UART_Receive_String(received_string);
-//
-//		Lcd_ES_tsendString(received_string);
-//		_delay_ms(500);
-
-
-		// Using No blocking functions
-//		if(UART_Receive_PeriodicCheck(&y))
-//		{
-//			LCD_ES_tGoTo(0, 0);
-//			Lcd_ES_tsendChar(y);
-//		}
-//
-//		LCD_ES_tGoTo(1, 0);
-//		Lcd_ES_tdisplayNum(x);
-//		x++;
-//		if(x==10)
-//		{
-//			x=0;
-//		}
-//		_delay_ms(200);
+		Lcd_ES_tsendString(received_string);
+		_delay_ms(1000);
 
 
 
