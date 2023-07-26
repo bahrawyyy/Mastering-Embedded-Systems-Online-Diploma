@@ -6,6 +6,7 @@
  */
 
 #define Act_As_Master
+//#define Act_As_Slave
 
 #define F_CPU 16000000UL
 
@@ -15,16 +16,15 @@
 #include "../MCAL/UART/UART.h"
 #include "string.h"
 #include "../MCAL/SPI/SPI.h"
-#include "../HAL/MAX7221/MAX7221.h"
 
 
 
 
 int main()
 {
-	DIO_ES_tSetPinValue(SPI_REG, SS, HIGH);
-
-	u8 sevenSegmentIndex=0,counter=0;
+	u8 data=0;
+	// Seven segment port
+	DIO_ES_tSetPortDirection(DIO_U8_PORT_A, OUTPUT);
 
 	SPI_Config_t SPI_Cfg;
 
@@ -37,20 +37,27 @@ int main()
 	SPI_Cfg.Prescalar = SPI_Prescalar_16;
 #endif
 
+#ifdef Act_As_Slave
+	SPI_Cfg.Device_Mode = SPI_DEVICE_MODE_SLAVE;
+#endif
+
 
 	SPI_Init(&SPI_Cfg);
 
-	MAX7221_Init();
-
-	while(1)
+#ifdef Act_As_Master
+	for(data=0;data<= 255;data++)
 	{
-		for(sevenSegmentIndex=1;sevenSegmentIndex<9;sevenSegmentIndex++)
-		{
-			SPI_MAX7221_Execute(sevenSegmentIndex, counter++);
-			_delay_ms(200);
-		}
+		DIO_ES_tSetPinValue(SPI_REG, SS, LOW);
+#endif
+
+#ifdef Act_As_Slave
+	for(data=255;data>=0;data--)
+	{
+#endif
+		_delay_ms(1000);
+		PORTA = SPI_Transmit_Receive(data);
 	}
 
 
-	return 0;
-}
+		return 0;
+	}
