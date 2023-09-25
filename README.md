@@ -17,7 +17,7 @@
 
 ---
 
-### Second Term ![image](https://progress-bar.dev/100/?title=In_Progress&color=ff00ff)
+### Second Term ![image](https://progress-bar.dev/100/?title=Done)
 - Unit 6:  Micro-controller Architecture ![image](https://progress-bar.dev/100/)
 - Unit 7:  MCU Essential Peripherals ![image](https://progress-bar.dev/100/)
 - Unit 8:  MCU Interfacing ![image](https://progress-bar.dev/100/)
@@ -26,7 +26,7 @@
 ---
 
 ### Third Term ![image](https://progress-bar.dev/0/?title=In_Progress&color=ff00ff)
-- Unit 14: Mastering ARM Cortex-M3/M4 ![image](https://progress-bar.dev/0/)
+- Unit 14: Mastering ARM Cortex-M3/M4 ![image](https://progress-bar.dev/20/)
 
 ---
 ## My Progress Profile: [Click Here](https://www.learn-in-depth.com/online-diploma/abdallabahrawyy%40gmail.com)
