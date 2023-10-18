@@ -9,7 +9,6 @@
 
 ### First Term ![image](https://progress-bar.dev/100/?title=Done)
 
-- Unit 1: Diploma Prerequisites ![image](https://progress-bar.dev/100/?title=No_Assignments&color=bababa)
 - Unit 2: C Programming ![image](https://progress-bar.dev/100/)
 - Unit 3: Embedded C ![image](https://progress-bar.dev/100/)
 - Unit 4: System Architect ![image](https://progress-bar.dev/100/)
@@ -25,8 +24,9 @@
 - Unit 10: SW Engineering ![image](https://progress-bar.dev/100/)
 ---
 
-### Third Term ![image](https://progress-bar.dev/0/?title=In_Progress&color=ff00ff)
-- Unit 14: Mastering ARM Cortex-M3/M4 ![image](https://progress-bar.dev/20/)
+### Third Term ![image](https://progress-bar.dev/10/?title=In_Progress&color=ff00ff)
+- Unit 14: Mastering ARM Cortex-M3/M4 ![image](https://progress-bar.dev/100/)
+- Unit 15: Create your own RTOS ![image](https://progress-bar.dev/0/)
 
 ---
 ## My Progress Profile: [Click Here](https://www.learn-in-depth.com/online-diploma/abdallabahrawyy%40gmail.com)
