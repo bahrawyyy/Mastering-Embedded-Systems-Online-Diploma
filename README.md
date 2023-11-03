@@ -26,7 +26,10 @@
 
 ### Third Term ![image](https://progress-bar.dev/10/?title=In_Progress&color=ff00ff)
 - Unit 14: Mastering ARM Cortex-M3/M4 ![image](https://progress-bar.dev/100/)
-- Unit 15: Create your own RTOS ![image](https://progress-bar.dev/0/)
+- Unit 15: Create your own RTOS ![image](https://progress-bar.dev/50/)
 
 ---
-## My Progress Profile: [Click Here](https://www.learn-in-depth.com/online-diploma/abdallabahrawyy%40gmail.com)
+## My Progress Profile: [Click Here](https://www.learn-in-depth-store.com/certificate/abdallabahrawyy%40gmail.com)
+  
+![Profile](https://github.com/bahrawyyy/Mastering-Embedded-Systems-Online-Diploma/assets/71684437/0cbb297f-df0a-452a-80dd-346aa80c7552)
+
