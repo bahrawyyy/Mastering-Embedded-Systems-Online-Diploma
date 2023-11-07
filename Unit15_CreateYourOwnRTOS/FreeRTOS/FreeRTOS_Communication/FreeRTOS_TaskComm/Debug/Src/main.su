@@ -1,0 +1,4 @@
+main.c:50:6:HW_INIT	16	static
+main.c:64:5:main	16	static
+main.c:93:6:vTaskMasterHandler	24	static
+main.c:109:6:vTaskSlaveHandler	24	static
